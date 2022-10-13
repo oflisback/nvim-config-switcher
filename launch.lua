@@ -2,18 +2,24 @@
 
 local home = os.getenv("HOME")
 
-local function read_file(path)
-  local file = io.open(path, "r")
-  if not file then return nil end
-  local arr = {}
-  for line in file:lines() do
-    table.insert(arr, line);
-  end
-  return arr
+local envFile = home .. '/.config/nvims/env.lua'
+local file = io.open(envFile, 'r')
+if not file then
+  print("Failed to open env file: " .. envFile)
+  print("Run selectConfig.lua in your shell to generate it.")
+  return
 end
+local fileContent = {}
+for line in file:lines() do
+  table.insert(fileContent, line);
+end
+local envDir = fileContent and fileContent[1]
 
-local fileContent = read_file(home .. '/.config/nvims/env.lua');
-local envDir = fileContent[1]
+if envDir == nil then
+  print("Could not read environment from " .. envFile)
+  print("Run selectConfig.lua in your shell to regenerate it.")
+  return
+end
 
 local args = ""
 for k, v in pairs(arg) do

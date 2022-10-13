@@ -5,10 +5,6 @@ local home = os.getenv("HOME")
 local config = dofile(home .. '/.config/nvims/config.lua')
 local M = {}
 
-function tableContains(table, key)
-    return table[key] ~= nil
-end
-
 function M.list()
 	print("Available config labels:")
  	for k, _ in pairs(config) do
@@ -17,12 +13,9 @@ function M.list()
 end
 
 function M.switch(label)
-	-- Validate that label is one of the available labels
-	if tableContains(config, label) then
-		print("Yep that is affirmative")
-	else
-		print("That is a nope")
-		return
+	if config[label] == nil then
+          print("Configuration not available: " .. label)
+          return
 	end
 
 	local configHome = home .. '/.config/nvims/envs/' .. label

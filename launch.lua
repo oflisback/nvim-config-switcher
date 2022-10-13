@@ -18,10 +18,10 @@ local envDir = fileContent[1]
 local args = ""
 for k, v in pairs(arg) do
   if k > 0 then
-    args = args .. v
+    args = args .. " " .. v
   end
 end
 
-local cmdline = 'XDG_CONFIG_HOME=' .. envDir .. " XDG_DATA_HOME=" .. envDir .. " nvim " .. args
+local cmdline = 'XDG_CONFIG_HOME=' .. envDir .. " XDG_DATA_HOME=" .. envDir .. " nvim" .. args
 
 os.execute(cmdline)

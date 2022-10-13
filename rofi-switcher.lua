@@ -25,5 +25,5 @@ local selection = os.capture("echo \"" .. labelParam .. "\"" .. "| rofi -dmenu -
 
 -- write the setting to file
 local file = io.open(home .. '/.config/nvims/env.lua', 'w')
-file:write(home .. "/.config/nvims/envs/" .. config[selection].subdir .. "\n")
+file:write(home .. "/.config/nvims/envs/" .. config[selection].subpath .. "\n")
 file:close()

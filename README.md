@@ -17,17 +17,17 @@ This is the first stab at a working setup.
 ```
 local configs = {
   chris = {
-    subdir = "chris"
+    subpath = "chris"
   },
   ola = {
-    subdir = "ola"
+    subpath = "ola"
   }
 }
 
 return configs
 ```
 
-- Make ~/.config/nvims/envs dir and one subdir for each label in your config e.g.:
+- Make ~/.config/nvims/envs dir and one subpath for each label in your config e.g.:
 
 ```
 ❯ tree -L 1
@@ -39,6 +39,12 @@ return configs
 - Make an alias such as:
 alias vim="~/path/to/this/repo/launch.lua"
 
-- Place the respective init.lua entrypoint under each such dir under subdir nvim, so it'll be e.g. chris/nvim/init.lua.
+- Place the respective init.lua entrypoint under each such dir under subpath nvim, so it'll be e.g. chris/nvim/init.lua.
 
 Now you should be able to easily switch which nvim config that will be used the next time you launch vim via the rofi menu.
+
+## Limitations
+
+Configurations are assumed to bootstrap via an init.lua file.
+
+I'd be surprised if any of this would work on e.g. Nintendo Switch or Microsoft Windows

@@ -23,7 +23,8 @@ end
 
 local selection = os.capture("echo \"" .. labelParam .. "\"" .. "| rofi -dmenu -p 'Neovim config'")
 
--- write the setting to file
-local file = io.open(home .. '/.config/nvims/env.lua', 'w')
-file:write(home .. "/.config/nvims/envs/" .. config[selection].subpath .. "\n")
-file:close()
+if config[selection] ~= nil then
+  local file = io.open(home .. '/.config/nvims/env.lua', 'w')
+  file:write(home .. "/.config/nvims/envs/" .. config[selection].subpath .. "\n")
+  file:close()
+end

@@ -1,0 +1,86 @@
+#!/usr/bin/lua
+local home = os.getenv("HOME")
+local config = dofile(home .. '/.config/nvcs/config.lua')
+
+local function hasValue(tab, val)
+    for index, value in ipairs(tab) do
+        if value == val then
+            return true
+        end
+    end
+    return false
+end
+
+
+if #arg == 1 then
+  if arg[1] == 'list' then
+    print("Available environments:")
+    for _, label in pairs(config) do
+      print(" " .. label)
+    end
+    return
+  end
+end
+
+if #arg == 2 then
+  if arg[1] == 'select' then
+    label = arg[2]
+    if hasValue(config, label) then
+      print('Setting default environment: ' .. label)
+      local file = io.open(home .. '/.config/nvcs/env.lua', 'w')
+      file:write(home .. "/.config/nvcs/envs/" .. label .. "\n")
+      file:close()
+      return
+    end
+    print("Unrecognized environment: " .. label)
+    return
+  end
+end
+
+if #arg == 3 then
+  if arg[1] == 'add' then
+    label = arg[2]
+    if hasValue(config, label) then
+      print("Label " .. label .. " already configured")
+      return
+    end
+    source = arg[3]
+    if source:match("^git@") or source:match("^https://") then
+      print("Adding " .. label .. " from repo: " .. source)
+      os.execute("git clone " .. source .. " " .. home .. "/.config/nvcs/envs/" .. label)
+    else
+      print("Adding " .. label .. " from directory: " .. source)
+    end
+    -- Add to configs
+    table.insert(config, label)
+    -- write it to disk
+    local file = io.open(home .. '/.config/nvcs/config.lua', 'w')
+    file:write("local configs = {\n")
+    for index, value in ipairs(config) do
+      file:write("  \"" .. value .. "\"")
+      if index < #config then
+        file:write(",\n")
+      else
+        file:write("\n")
+      end
+    end
+    file:write("}\n\nreturn configs\n")
+    file:close()
+    return
+  end
+end
+
+print("Usage: " .. arg[0] .. " <add|list|select>")
+print("\nArguments:")
+print("  add      Add new environment")
+print("  list     List configured environment labels")
+print("  select   Select an environment based on its label")
+print("\nOptions:")
+print("  add <label> <source folder to copy content from | repository url>")
+print("  select <label>")
+print("\nExamples:")
+print("  " .. arg[0] .. " add mylabel /tmp/mydotfiles/nvim")
+print("  " .. arg[0] .. " add jdhao https://github.com/jdhao/nvim-config.git")
+print("  " .. arg[0] .. " list")
+print("  " .. arg[0] .. " select light")
+

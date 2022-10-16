@@ -2,23 +2,32 @@ local status, module = pcall(require, 'packer')
 packer = status and module or nil
 
 local home = os.getenv("HOME")
-local config = dofile(home .. '/.config/nvimcs/config.lua')
+local config = dofile(home .. '/.config/nvcs/config.lua')
 local M = {}
+
+local function hasValue(tab, val)
+    for index, value in ipairs(tab) do
+        if value == val then
+            return true
+        end
+    end
+    return false
+end
 
 function M.list()
 	print("Available config labels:")
- 	for k, _ in pairs(config) do
-		print(" " .. k)
+ 	for _, label in pairs(config) do
+		print(" " .. label)
 	end
 end
 
 function M.switch(label)
-	if config[label] == nil then
+	if not hasValue(config, label) then
           print("Configuration not available: " .. label)
           return
 	end
 
-	local configHome = home .. '/.config/nvimcs/envs/' .. label
+	local configHome = home .. '/.config/nvcs/envs/' .. label
         vim.env.XDG_DATA_HOME = configHome
 	vim.env.XDG_CONFIG_HOME = configHome
         vim.env.MYVIMRC = vim.env.XDG_CONFIG_HOME .. "/nvim/init.lua"

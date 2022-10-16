@@ -6,20 +6,20 @@ This project aims to simplify switching between multiple neovim configurations/e
 
 1. Clone this repo.
 2. Run `setup.lua` to generate a config file and two example environments.
-3. Inspect or modify `~/.config/nvimcs/config.lua`. If you add entries you should also create corresponding subdirectories with the same structure as the included `light` and `dark` environments.
+3. Inspect or modify `~/.config/nvcs/config.lua`. If you add entries you should also create corresponding subdirectories with the same structure as the included `light` and `dark` environments.
 4. Setup an alias for `launcher.lua`, see below.
-5. Run `select-env.lua` or `rofi-switcher.lua` to select an environment to be used next time `launcher.lua` is executed.
+5. Run `nvcs.lua` or `rofi-switcher.lua` to select an environment to be used next time `launcher.lua` is executed.
 6. Optionally install the neovim plugin to be able to switch environment from inside neovim.
 
 ## Components
 
 ### setup.lua
 
-Execute setup.lua to create the directory `~/.config/nvimcs/` and an example `config.lua` lua file. Two example neovim environments are also copied to that directory.
+Execute setup.lua to create the directory `~/.config/nvcs/` and an example `config.lua` lua file. Two example neovim environments are also copied to that directory.
 
 ### launcher.lua
 
-`launcher.lua` is a script that will launch neovim with the pre-selected environment, set either via the rofi menu or select-env.lua.
+`launcher.lua` will launch neovim with the pre-selected environment, set either via the rofi menu or nvcs.lua.
 
 To make use of it, create an alias in your shell config such as for z-shell by adding the following line to .zshrc:
 
@@ -29,9 +29,9 @@ alias vim="/path/to/nvim-config-switcher/launch.lua"
 
 Then when running `vim` the launcher will be used to start neovim with the pre-selected environment.
 
-### select-env.lua
+### nvcs.lua
 
-Use select-env.lua to list available environments and to select which environment that should be the default one next time `launcher.lua` is
+Use nvcs.lua to list available environments and to select which environment that should be the default one next time `launcher.lua` is
 started.
 
 ### Neovim plugin
@@ -39,7 +39,7 @@ started.
 The neovim plugin adds two commands:
 
 - NVCSwitch - Switch to another available environment.
-- NVCList - List available environments.
+- NVCSList - List available environments.
 
 #### Installation
 

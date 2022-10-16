@@ -1,10 +1,6 @@
 local configs = {
-  light = {
-    subpath = "light"
-  },
-  dark = {
-    subpath = "dark"
-  }
+  "light",
+  "dark"
 }
 
 return configs

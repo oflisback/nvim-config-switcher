@@ -1,7 +1,7 @@
 #!/usr/bin/lua
 
 local home = os.getenv("HOME")
-local configDir = home .. '/.config/nvimcs/'
+local configDir = home .. '/.config/nvcs/'
 local configFilePath = configDir .. 'config.lua'
 
 function exists(file)
@@ -32,4 +32,4 @@ else
   print("Config file " .. configFilePath .. " already exists.")
 end
 print("First edit: " .. configFilePath)
-print("then create corresponding subpaths for your environments.")
+print("then create corresponding subdirectories for your environments.")

@@ -6,7 +6,7 @@ local envFile = home .. '/.config/nvcs/env.lua'
 local file = io.open(envFile, 'r')
 if not file then
   print("Failed to open env file: " .. envFile)
-  print("Run selectConfig.lua in your shell to generate it.")
+  print("Run nvcs in your shell to generate it.")
   return
 end
 local fileContent = {}
@@ -17,7 +17,7 @@ local envDir = fileContent and fileContent[1]
 
 if envDir == nil then
   print("Could not read environment from " .. envFile)
-  print("Run selectConfig.lua in your shell to regenerate it.")
+  print("Run nvcs in your shell to regenerate it.")
   return
 end
 

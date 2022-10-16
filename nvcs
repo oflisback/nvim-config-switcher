@@ -45,15 +45,15 @@ if #arg == 3 then
       return
     end
     source = arg[3]
+    os.execute("mkdir -p " .. home .. "/.config/nvcs/envs/" .. label .. "/nvim")
     if source:match("^git@") or source:match("^https://") then
       print("Adding " .. label .. " from repo: " .. source)
-      os.execute("git clone " .. source .. " " .. home .. "/.config/nvcs/envs/" .. label)
+      os.execute("git clone " .. source .. " " .. home .. "/.config/nvcs/envs/" .. label .. "/nvim")
     else
       print("Adding " .. label .. " from directory: " .. source)
+      os.execute("cp -R " .. source .. "/* " .. home .. "/.config/nvcs/envs/" .. label .. "/nvim")
     end
-    -- Add to configs
     table.insert(config, label)
-    -- write it to disk
     local file = io.open(home .. '/.config/nvcs/config.lua', 'w')
     file:write("local configs = {\n")
     for index, value in ipairs(config) do

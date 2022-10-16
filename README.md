@@ -6,7 +6,7 @@ This project aims to simplify switching between multiple neovim configurations/e
 
 1. Clone this repo.
 2. Run `setup.lua` to generate a config file and two example environments.
-3. Inspect or modify `~/.config/nvims/config.lua`. If you add entries you should also create corresponding subdirectories with the same structure as the included `light` and `dark` environments.
+3. Inspect or modify `~/.config/nvimcs/config.lua`. If you add entries you should also create corresponding subdirectories with the same structure as the included `light` and `dark` environments.
 4. Setup an alias for `launcher.lua`, see below.
 5. Run `select-env.lua` or `rofi-switcher.lua` to select an environment to be used next time `launcher.lua` is executed.
 6. Optionally install the neovim plugin to be able to switch environment from inside neovim.
@@ -15,7 +15,7 @@ This project aims to simplify switching between multiple neovim configurations/e
 
 ### setup.lua
 
-Execute setup.lua to create the directory `~/.config/nvims/` and an example `config.lua` lua file. Two example neovim environments are also copied to that directory.
+Execute setup.lua to create the directory `~/.config/nvimcs/` and an example `config.lua` lua file. Two example neovim environments are also copied to that directory.
 
 ### launcher.lua
 

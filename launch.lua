@@ -2,7 +2,7 @@
 
 local home = os.getenv("HOME")
 
-local envFile = home .. '/.config/nvims/env.lua'
+local envFile = home .. '/.config/nvimcs/env.lua'
 local file = io.open(envFile, 'r')
 if not file then
   print("Failed to open env file: " .. envFile)

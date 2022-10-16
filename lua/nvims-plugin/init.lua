@@ -2,7 +2,7 @@ local status, module = pcall(require, 'packer')
 packer = status and module or nil
 
 local home = os.getenv("HOME")
-local config = dofile(home .. '/.config/nvims/config.lua')
+local config = dofile(home .. '/.config/nvimcs/config.lua')
 local M = {}
 
 function M.list()
@@ -18,7 +18,7 @@ function M.switch(label)
           return
 	end
 
-	local configHome = home .. '/.config/nvims/envs/' .. label
+	local configHome = home .. '/.config/nvimcs/envs/' .. label
         vim.env.XDG_DATA_HOME = configHome
 	vim.env.XDG_CONFIG_HOME = configHome
         vim.env.MYVIMRC = vim.env.XDG_CONFIG_HOME .. "/nvim/init.lua"

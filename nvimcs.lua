@@ -1,6 +1,6 @@
 #!/usr/bin/lua
 local home = os.getenv("HOME")
-local config = dofile(home .. '/.config/nvims/config.lua')
+local config = dofile(home .. '/.config/nvimcs/config.lua')
 
 if #arg == 1 then
   if arg[1] == 'list' then
@@ -17,8 +17,8 @@ if #arg == 2 then
     label = arg[2]
     if config[label] ~= nil then
       print('Setting default environment: ' .. label)
-      local file = io.open(home .. '/.config/nvims/env.lua', 'w')
-      file:write(home .. "/.config/nvims/envs/" .. config[label].subpath .. "\n")
+      local file = io.open(home .. '/.config/nvimcs/env.lua', 'w')
+      file:write(home .. "/.config/nvimcs/envs/" .. config[label].subpath .. "\n")
       file:close()
       return
     end

@@ -1,7 +1,7 @@
 #!/usr/bin/lua
 
 local home = os.getenv("HOME")
-local config = dofile(home .. '/.config/nvims/config.lua')
+local config = dofile(home .. '/.config/nvimcs/config.lua')
 
 local labels = {}
 
@@ -24,7 +24,7 @@ end
 local selection = os.capture("echo \"" .. labelParam .. "\"" .. "| rofi -dmenu -p 'Neovim config'")
 
 if config[selection] ~= nil then
-  local file = io.open(home .. '/.config/nvims/env.lua', 'w')
-  file:write(home .. "/.config/nvims/envs/" .. config[selection].subpath .. "\n")
+  local file = io.open(home .. '/.config/nvimcs/env.lua', 'w')
+  file:write(home .. "/.config/nvimcs/envs/" .. config[selection].subpath .. "\n")
   file:close()
 end

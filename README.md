@@ -31,8 +31,7 @@ Then when running `vim` the launcher will be used to start neovim with the pre-s
 
 ### nvcs
 
-Use `nvcs` to list available environments and to select which environment that should be the default one next time `launcher` is
-started.
+Use `nvcs` to add, list or select which environment that should be the default one next time `launcher` is run.
 
 ### Neovim plugin
 

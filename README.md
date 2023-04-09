@@ -1,3 +1,9 @@
+# Update
+
+Going forward neovim has built in support for config switching which makes this little project obsolete.
+
+See: [Neovim Config Switcher](https://www.youtube.com/watch?v=LkHjJlSgKZY).
+
 # Neovim config switcher
 
 This project aims to simplify switching between multiple neovim configurations/environments, either by setting which environment should be used the next time neovim is started, or by switching environment at runtime from inside neovim.
